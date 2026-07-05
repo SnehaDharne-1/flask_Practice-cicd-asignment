@@ -3,7 +3,7 @@ name: SecureGate AI Security Gate
 on:
   push:
     branches:
-      - main
+      - "main"
   workflow_dispatch:
 
 jobs:
@@ -243,7 +243,8 @@ jobs:
           IMAGE_NAMESPACE="${DOCKERHUB_USERNAME:-$REPOSITORY_OWNER}"
           IMAGE_REPOSITORY="$PROJECT_NAME"
           IMAGE_REPO=$(echo "$IMAGE_NAMESPACE/$IMAGE_REPOSITORY" | tr '[:upper:]' '[:lower:]')
-          IMAGE_SHA_REF="$IMAGE_REPO:$COMMIT_SHA"
+          SHORT_COMMIT_SHA="${COMMIT_SHA:0:8}"
+          IMAGE_SHA_REF="$IMAGE_REPO:$SHORT_COMMIT_SHA"
           IMAGE_LATEST_REF="$IMAGE_REPO:latest"
 
           echo "SecureGate AI Docker image path: $IMAGE_SHA_REF"
@@ -264,10 +265,10 @@ jobs:
         run: |
           if docker manifest inspect "$IMAGE_REF" >/dev/null 2>&1; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Image already exists on Docker Hub for this commit. Push will be skipped."
+            echo "Image already exists on Docker Hub for this short commit tag. Push will be skipped."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "No existing Docker Hub image found for this commit. Push is needed."
+            echo "No existing Docker Hub image found for this short commit tag. Push is needed."
           fi
 
       - name: Run Trivy image scan
