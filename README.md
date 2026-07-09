@@ -111,6 +111,327 @@ Form to add a new student.
 Form pre-filled with student details.
 - <img width="1905" height="897" alt="image" src="https://github.com/user-attachments/assets/04febf01-879f-431f-ab07-abcfb993acf1" />
 
+# Jenkins CI/CD Pipeline for Flask Application
+
+## Project Overview
+
+This project demonstrates the implementation of a Continuous Integration and Continuous Deployment (CI/CD) pipeline using **Jenkins** for a simple **Python Flask** web application.
+
+The pipeline automatically performs the following tasks:
+
+- Clone the source code from GitHub.
+- Create a Python Virtual Environment.
+- Install all required Python dependencies.
+- Execute unit tests using **pytest**.
+- Deploy the Flask application if all tests pass successfully.
+
+This project was developed as part of the **Hero Vired DevOps Assignment**.
+
+---
+
+# Project Architecture
+
+```
+Developer
+     │
+     ▼
+GitHub Repository
+     │
+     ▼
+Jenkins Pipeline
+     │
+     ├── Checkout Source Code
+     ├── Install Dependencies
+     ├── Run Unit Tests
+     ├── Deploy Flask Application
+     ▼
+Running Flask Application
+```
+
+---
+
+# Project Structure
+
+```
+flask-cicd-project/
+│
+├── app.py
+├── test_app.py
+├── requirements.txt
+├── Jenkinsfile
+├── README.md
+└── .gitignore
+```
+
+---
+
+# Technologies Used
+
+- Python 3.12
+- Flask
+- Pytest
+- Jenkins
+- Docker
+- Git
+- GitHub
+- Ubuntu 24.04 LTS
+- AWS EC2
+
+---
+
+# Prerequisites
+
+Before running this project, make sure the following software is installed:
+
+- Ubuntu 24.04 LTS
+- Python 3
+- pip
+- Git
+- Docker
+- Jenkins
+- GitHub Account
+
+---
+
+# Setup Instructions
+
+## Step 1: Clone Repository
+
+```bash
+git clone https://github.com/<your-username>/flask-cicd-project.git
+
+cd flask-cicd-project
+```
+
+---
+
+## Step 2: Create Virtual Environment
+
+```bash
+python3 -m venv venv
+```
+
+---
+
+## Step 3: Activate Virtual Environment
+
+Linux
+
+```bash
+source venv/bin/activate
+```
+
+Windows
+
+```cmd
+venv\Scripts\activate
+```
+
+---
+
+## Step 4: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Step 5: Run Flask Application
+
+```bash
+python app.py
+```
+
+Open browser
+
+```
+http://localhost:5000
+```
+
+---
+
+## Step 6: Run Unit Tests
+
+```bash
+pytest
+```
+
+Expected Output
+
+```
+====================
+1 passed
+====================
+```
+
+---
+
+# Jenkins Pipeline
+
+The project contains a **Declarative Jenkins Pipeline** inside the `Jenkinsfile`.
+
+The pipeline contains four stages.
+
+## Stage 1 – Checkout
+
+Downloads the latest source code from GitHub.
+
+## Stage 2 – Build
+
+Creates a Python virtual environment and installs all required dependencies using `pip`.
+
+## Stage 3 – Test
+
+Runs the unit tests using **pytest**.
+
+If any test fails, the pipeline stops.
+
+## Stage 4 – Deploy
+
+Starts the Flask application.
+
+---
+
+# Pipeline Workflow
+
+```
+Checkout
+      │
+      ▼
+Build
+      │
+      ▼
+Install Dependencies
+      │
+      ▼
+Run Tests
+      │
+      ▼
+Deploy Flask App
+```
+
+---
+
+# Jenkinsfile
+
+The Jenkinsfile performs the following tasks:
+
+- Clone Repository
+- Install Dependencies
+- Execute Tests
+- Deploy Flask Application
+- Display Success or Failure Messages
+
+---
+
+# Running Jenkins
+
+Start Jenkins and open
+
+```
+http://<EC2-Public-IP>:8080
+```
+
+Example
+
+```
+http://13.xxx.xxx.xxx:8080
+```
+
+---
+
+# Build Commands
+
+### Build
+
+```bash
+pip install -r requirements.txt
+```
+
+### Test
+
+```bash
+pytest
+```
+
+### Deploy
+
+```bash
+python app.py
+```
+
+---
+
+# Expected Jenkins Pipeline Output
+
+```
+Pipeline Started
+
+↓
+
+Checkout Successful
+
+↓
+
+Dependencies Installed
+
+↓
+
+Tests Passed
+
+↓
+
+Application Deployed Successfully
+
+↓
+
+Pipeline Completed Successfully
+```
+
+---
+
+# Sample Application Output
+
+Home Page
+
+```
+Hello from Jenkins CI/CD Pipeline!
+```
+
+---
+
+# Future Improvements
+
+- GitHub Webhooks
+- Email Notifications
+- Docker Image Creation
+- Kubernetes Deployment
+- SonarQube Integration
+- Slack Notifications
+- AWS EC2 Automatic Deployment
+
+---
+## Screenshots
+
+**pipeline is successfull**
+Lists all students with Edit/Delete buttons.
+<img width="1319" height="650" alt="Screenshot 2026-07-09 132158" src="https://github.com/user-attachments/assets/ced5c07f-f11b-4130-9095-47b223c8785f" />
+
+
+
+**Jenkins pipeline**
+<img width="1216" height="658" alt="Screenshot 2026-07-09 133320" src="https://github.com/user-attachments/assets/482de418-7e03-4744-8bce-f06200c311c0" />
+
+
+
+**jenkins is ready**
+<img width="1322" height="487" alt="Screenshot 2026-07-02 235020" src="https://github.com/user-attachments/assets/0519dd4b-50ef-4c09-af3f-78a411e242e5" />
+
+
+# License
+
+This project is developed for educational purposes as part of the Hero Vired DevOps Assignment.
 
 
 ---
